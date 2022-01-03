@@ -1,9 +1,10 @@
 package io.github.x00jahangir;
 
-public enum ArithmeticOperationType {
+public enum OperationType {
     ADD,
     SUBTRACT,
     MULTIPLY,
     DIVIDE,
-    SQUARE_ROOT
+    SQUARE_ROOT,
+    CLEAR
 }

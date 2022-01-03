@@ -7,7 +7,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="6905d" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+      <component id="6905d" class="javax.swing.JTextArea" binding="textResult">
         <constraints border-constraint="North"/>
         <properties>
           <columns value="1"/>

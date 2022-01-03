@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class CalculatorView {
-    private JPanel panelMain;
+    public JPanel panelMain;
     private JPanel panelButtonHolder;
-    private JTextArea textArea1;
+    private JTextArea textResult;
     private JButton buttonNum1;
     private JButton buttonNum2;
     private JButton buttonNum3;
@@ -40,8 +40,8 @@ public class CalculatorView {
 //        });
 //    }
 
-    public void addArithmeticListener(ArithmeticOperationType operationType, ActionListener actionListener){
-        switch (operationType){
+    public void addArithmeticListener(OperationType operationType, ActionListener actionListener) {
+        switch (operationType) {
             case ADD:
                 buttonPlus.addActionListener(actionListener);
                 break;
@@ -60,8 +60,12 @@ public class CalculatorView {
         }
     }
 
-    public void addNumberButtonListener(int number, ActionListener actionListener){
-        switch (number){
+    public void addClearScreenListener(ActionListener actionListener){
+        buttonClearScreen.addActionListener(actionListener);
+    }
+
+    public void addNumberButtonListener(int number, ActionListener actionListener) {
+        switch (number) {
             case 0:
                 buttonNum0.addActionListener(actionListener);
                 break;
@@ -95,11 +99,23 @@ public class CalculatorView {
         }
     }
 
+    public String getResult() {
+        return textResult.getText();
+    }
+
+    public void resetResult() {
+        textResult.setText("0");
+    }
+
+    public void setResult(String result) {
+        textResult.setText(result);
+    }
+
     public static void main(String[] args) {
-        JFrame jFrame = new JFrame("Calculator");
-        jFrame.setContentPane(new CalculatorView().panelMain);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.pack();
-        jFrame.setVisible(true);
+
+    }
+
+    public void addResultShowListener(ActionListener actionListener) {
+        buttonEqual.addActionListener(actionListener);
     }
 }
