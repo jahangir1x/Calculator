@@ -6,5 +6,7 @@ public enum OperationType {
     MULTIPLY,
     DIVIDE,
     SQUARE_ROOT,
-    CLEAR
+    SQUARE,
+    INVERT,
+    NEGATE
 }

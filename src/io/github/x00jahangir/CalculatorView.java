@@ -27,7 +27,7 @@ public class CalculatorView {
     private JButton buttonMultiply;
     private JButton buttonMinus;
     private JButton buttonPlus;
-    private JButton buttonNegative;
+    private JButton buttonNegate;
     private JButton buttonDot;
     private JButton buttonEqual;
 
@@ -54,14 +54,27 @@ public class CalculatorView {
             case DIVIDE:
                 buttonDivide.addActionListener(actionListener);
                 break;
+            case INVERT:
+                buttonInverse.addActionListener(actionListener);
+                break;
+            case SQUARE:
+                buttonSquare.addActionListener(actionListener);
+                break;
             case SQUARE_ROOT:
                 buttonSquareRoot.addActionListener(actionListener);
+                break;
+            case NEGATE:
+                buttonNegate.addActionListener(actionListener);
                 break;
         }
     }
 
-    public void addClearScreenListener(ActionListener actionListener){
+    public void addClearScreenListener(ActionListener actionListener) {
         buttonClearScreen.addActionListener(actionListener);
+    }
+
+    public void addDotListener(ActionListener actionListener) {
+        buttonDot.addActionListener(actionListener);
     }
 
     public void addNumberButtonListener(int number, ActionListener actionListener) {
@@ -117,5 +130,9 @@ public class CalculatorView {
 
     public void addResultShowListener(ActionListener actionListener) {
         buttonEqual.addActionListener(actionListener);
+    }
+
+    public void addClearPreviousInputListener(ActionListener actionListener) {
+        buttonClearPrevious.addActionListener(actionListener);
     }
 }

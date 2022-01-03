@@ -2,6 +2,8 @@ package io.github.x00jahangir;
 
 import javax.swing.*;
 
+import static java.lang.Math.max;
+
 public class Calculator {
     public static void main(String[] args) {
         CalculatorModel model = new CalculatorModel();
@@ -13,5 +15,8 @@ public class Calculator {
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
         jFrame.setVisible(true);
+
+        String test = "aa";
+        System.out.println(test.substring(0, max(test.length() - 1, 0)));
     }
 }
