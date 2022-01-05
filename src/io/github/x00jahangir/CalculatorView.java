@@ -30,17 +30,39 @@ public class CalculatorView {
     private JButton buttonNegate;
     private JButton buttonDot;
     private JButton buttonEqual;
+    private JTextPane textHistory;
+    private JButton iButton;
 
-//    public CalculatorView() {
-//        buttonNum9.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
-//    }
+    public String getResult() {
+        return textResult.getText();
+    }
 
-    public void addArithmeticListener(OperationType operationType, ActionListener actionListener) {
+    public void resetResult() {
+        textResult.setText(Constants.RESET_TO_ZERO);
+    }
+
+    public void setResult(String result) {
+        textResult.setText(result);
+    }
+
+    public String getHistoryText() {
+        return textHistory.getText();
+    }
+
+    public void resetHistoryText() {
+        textHistory.setText(Constants.RESET_TO_ZERO);
+    }
+
+    public void setHistoryText(String result) {
+        textHistory.setText(result);
+    }
+
+    /**
+     * add arithmetic button listeners.
+     * @param operationType supported operation types declared in OperationType enum.
+     * @param actionListener ActionListener class to attach.
+     */
+    public void addOperationButtonsListener(OperationType operationType, ActionListener actionListener) {
         switch (operationType) {
             case ADD:
                 buttonPlus.addActionListener(actionListener);
@@ -77,6 +99,11 @@ public class CalculatorView {
         buttonDot.addActionListener(actionListener);
     }
 
+    /**
+     * add number buttons listener
+     * @param number the number button to attach.
+     * @param actionListener ActionListener class to attach.
+     */
     public void addNumberButtonListener(int number, ActionListener actionListener) {
         switch (number) {
             case 0:
@@ -112,22 +139,6 @@ public class CalculatorView {
         }
     }
 
-    public String getResult() {
-        return textResult.getText();
-    }
-
-    public void resetResult() {
-        textResult.setText("0");
-    }
-
-    public void setResult(String result) {
-        textResult.setText(result);
-    }
-
-    public static void main(String[] args) {
-
-    }
-
     public void addResultShowListener(ActionListener actionListener) {
         buttonEqual.addActionListener(actionListener);
     }
@@ -135,4 +146,5 @@ public class CalculatorView {
     public void addClearPreviousInputListener(ActionListener actionListener) {
         buttonClearPrevious.addActionListener(actionListener);
     }
+
 }

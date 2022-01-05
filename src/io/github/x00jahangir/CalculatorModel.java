@@ -2,8 +2,15 @@ package io.github.x00jahangir;
 
 public class CalculatorModel {
     private double result = 0;
-    private OperationType operationType;
+    private OperationType operationType = OperationType.NONE;
 
+    public void setOperationType(OperationType operationType){
+        this.operationType = operationType;
+    }
+
+    /**
+     * @param userInput evaluate previously selected operation with supplied userInput.
+     */
     public void evaluateResult(String userInput) {
         switch (operationType) {
             case ADD:
@@ -17,6 +24,9 @@ public class CalculatorModel {
                 break;
             case MULTIPLY:
                 result = result * Double.parseDouble(userInput);
+                break;
+            case NONE:
+                result = Double.parseDouble(userInput);
                 break;
         }
     }
@@ -46,7 +56,6 @@ public class CalculatorModel {
     }
 
     public void invert(String userInput) {
-
         result = 1 / Double.parseDouble(userInput);
     }
 

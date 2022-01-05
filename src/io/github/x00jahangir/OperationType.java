@@ -1,5 +1,6 @@
 package io.github.x00jahangir;
 
+// supported operation types
 public enum OperationType {
     ADD,
     SUBTRACT,
@@ -8,5 +9,6 @@ public enum OperationType {
     SQUARE_ROOT,
     SQUARE,
     INVERT,
-    NEGATE
+    NEGATE,
+    NONE
 }
