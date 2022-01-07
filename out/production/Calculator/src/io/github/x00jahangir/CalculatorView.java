@@ -41,7 +41,6 @@ public class CalculatorView {
         jFrame.setContentPane(panelMain);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
-        jFrame.setVisible(true);
         jFrame.setIconImage(new ImageIcon(getClass().getResource("/res/logo.png")).getImage());
         window_width = jFrame.getWidth();
         window_height = jFrame.getHeight();
@@ -51,6 +50,7 @@ public class CalculatorView {
         int y_pos = (size.height / 2) - (window_height / 2);
         jFrame.setBounds(x_pos, y_pos,window_width, window_height);
         // ------------------------------------------------------------------------
+        jFrame.setVisible(true);
     }
 
     public String getResult() {
