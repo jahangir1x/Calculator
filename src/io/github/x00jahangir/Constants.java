@@ -14,4 +14,5 @@ public class Constants {
     public static final String INVERT = " X ";
     public static final String DOT = ".";
     public static final String ZERO_DOT = "0.";
+    public static final String ABOUT_TITLE = "About";
 }

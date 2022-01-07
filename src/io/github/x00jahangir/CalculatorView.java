@@ -1,37 +1,53 @@
 package io.github.x00jahangir;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class CalculatorView {
-    public JPanel panelMain;
-    private JPanel panelButtonHolder;
+    private int window_width;
+    private int window_height;
+    private JFrame jFrame;
+    private JPanel panelMain;
+    private JLabel textHistory;
     private JTextArea textResult;
-    private JButton buttonNum1;
-    private JButton buttonNum2;
-    private JButton buttonNum3;
-    private JButton buttonNum4;
-    private JButton buttonNum5;
-    private JButton buttonNum6;
-    private JButton buttonNum7;
-    private JButton buttonNum8;
-    private JButton buttonNum9;
-    private JButton buttonNum0;
-    private JButton buttonPercent;
     private JButton buttonClearScreen;
     private JButton buttonClearPrevious;
     private JButton buttonInverse;
+    private JButton buttonDivide;
     private JButton buttonSquare;
     private JButton buttonSquareRoot;
-    private JButton buttonDivide;
+    private JButton buttonNum7;
+    private JButton buttonNum4;
+    private JButton buttonNum1;
+    private JButton buttonNegate;
+    private JButton buttonAbout;
+    private JButton buttonNum8;
+    private JButton buttonNum9;
     private JButton buttonMultiply;
+    private JButton buttonNum5;
+    private JButton buttonNum6;
     private JButton buttonMinus;
     private JButton buttonPlus;
-    private JButton buttonNegate;
+    private JButton buttonNum3;
+    private JButton buttonNum2;
+    private JButton buttonNum0;
     private JButton buttonDot;
     private JButton buttonEqual;
-    private JTextPane textHistory;
-    private JButton iButton;
+
+    CalculatorView(){
+        jFrame = new JFrame(Constants.APP_TITLE);
+        jFrame.setContentPane(panelMain);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.pack();
+        jFrame.setVisible(true);
+        window_width = jFrame.getWidth();
+        window_height = jFrame.getHeight();
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        int x_pos = (size.width / 2) - (window_width / 2);
+        int y_pos = (size.height / 2) - (window_height / 2);
+        jFrame.setBounds(x_pos, y_pos,window_width, window_height);
+    }
 
     public String getResult() {
         return textResult.getText();
@@ -145,6 +161,10 @@ public class CalculatorView {
 
     public void addClearPreviousInputListener(ActionListener actionListener) {
         buttonClearPrevious.addActionListener(actionListener);
+    }
+
+    public void addAboutListener(ActionListener actionListener){
+        buttonAbout.addActionListener(actionListener);
     }
 
 }

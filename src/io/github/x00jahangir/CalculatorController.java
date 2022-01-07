@@ -1,42 +1,66 @@
 package io.github.x00jahangir;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.stream.IntStream;
 
 import static java.lang.Math.max;
 
 public class CalculatorController {
     private CalculatorView calculatorView;
+    private CalculatorAboutView calculatorAboutView;
     private CalculatorModel calculatorModel;
     private boolean needToClearResult = false;
     private boolean needToClearHistory = false;
 
-    CalculatorController(CalculatorView view, CalculatorModel model) {
-        calculatorView = view;
-        calculatorModel = model;
-        view.resetResult();
+    CalculatorController(CalculatorView calculatorView, CalculatorAboutView calculatorAboutView, CalculatorModel calculatorModel) {
+        this.calculatorView = calculatorView;
+        this.calculatorAboutView = calculatorAboutView;
+        this.calculatorModel = calculatorModel;
+        calculatorView.resetResult();
 
         //------------------------- Add listeners --------------------------------------------
         IntStream.range(0, 10).forEach(number -> {
             NumberButtonListener numberButtonListener = new NumberButtonListener();
             numberButtonListener.number = number;
-            view.addNumberButtonListener(number, numberButtonListener);
+            calculatorView.addNumberButtonListener(number, numberButtonListener);
         });
 
-        view.addOperationButtonsListener(OperationType.ADD, new AdditionListener());
-        view.addOperationButtonsListener(OperationType.SUBTRACT, new SubtractionListener());
-        view.addOperationButtonsListener(OperationType.MULTIPLY, new MultiplyListener());
-        view.addOperationButtonsListener(OperationType.DIVIDE, new DivisionListener());
-        view.addOperationButtonsListener(OperationType.INVERT, new InvertListener());
-        view.addOperationButtonsListener(OperationType.SQUARE, new SquareListener());
-        view.addOperationButtonsListener(OperationType.SQUARE_ROOT, new SquareRootListener());
-        view.addOperationButtonsListener(OperationType.NEGATE, new NegateListener());
-        view.addDotListener(new DotListener());
-        view.addResultShowListener(new ShowResultListener());
-        view.addClearScreenListener(new ClearScreenListener());
-        view.addClearPreviousInputListener(new ClearPreviousInputListener());
+        calculatorView.addOperationButtonsListener(OperationType.ADD, new AdditionListener());
+        calculatorView.addOperationButtonsListener(OperationType.SUBTRACT, new SubtractionListener());
+        calculatorView.addOperationButtonsListener(OperationType.MULTIPLY, new MultiplyListener());
+        calculatorView.addOperationButtonsListener(OperationType.DIVIDE, new DivisionListener());
+        calculatorView.addOperationButtonsListener(OperationType.INVERT, new InvertListener());
+        calculatorView.addOperationButtonsListener(OperationType.SQUARE, new SquareListener());
+        calculatorView.addOperationButtonsListener(OperationType.SQUARE_ROOT, new SquareRootListener());
+        calculatorView.addOperationButtonsListener(OperationType.NEGATE, new NegateListener());
+        calculatorView.addDotListener(new DotListener());
+        calculatorView.addResultShowListener(new ShowResultListener());
+        calculatorView.addClearScreenListener(new ClearScreenListener());
+        calculatorView.addClearPreviousInputListener(new ClearPreviousInputListener());
+        calculatorView.addAboutListener(new AboutListener());
+        calculatorAboutView.addGithubLinkListener(new GithubLinkListener());
+        calculatorAboutView.addFacebookLinkListener(new FacebookLinkListener());
+        calculatorAboutView.addMailAddressListener(new MailAddressListener());
         //------------------------------------------------------------------------------------
+    }
+
+    public static void openUrl(URL url){
+        try{
+            Desktop desktop = Desktop.getDesktop();
+            try{
+                desktop.browse(url.toURI());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private class NumberButtonListener implements ActionListener {
@@ -47,12 +71,12 @@ public class CalculatorController {
             String userInput = calculatorView.getResult();
 
             if (needToClearHistory) {
-                calculatorView.setHistoryText("");
+                calculatorView.setHistoryText(" ");
                 needToClearHistory = false;
             }
 
             if (userInput.compareTo(Constants.RESET_TO_ZERO) == 0 || needToClearResult) {
-                calculatorView.setResult("");
+                calculatorView.setResult(" ");
                 calculatorView.setResult(Integer.toString(number));
                 needToClearResult = false;
             } else {
@@ -84,7 +108,7 @@ public class CalculatorController {
         @Override
         public void actionPerformed(ActionEvent e) {
             String userInput = calculatorView.getResult();
-            if (userInput.compareTo("") == 0) {
+            if (userInput.compareTo(" ") == 0) {
                 calculatorView.setResult(Constants.ZERO_DOT);
             } else {
                 calculatorView.setResult(userInput + Constants.DOT);
@@ -117,6 +141,14 @@ public class CalculatorController {
             calculatorView.setResult(calculatorModel.getResult());
         }
 
+    }
+
+    private class AboutListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFrame jFrame = new JFrame();
+            calculatorAboutView.setVisible(true);
+        }
     }
 
     private class SquareRootListener implements ActionListener {
@@ -183,6 +215,39 @@ public class CalculatorController {
 
     }
 
+    private class GithubLinkListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                openUrl(new URL(calculatorAboutView.getGithubLink()));
+            }catch (Exception exception){
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    private class FacebookLinkListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                openUrl(new URL(calculatorAboutView.getFacebookLink()));
+            }catch (Exception exception){
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    private class MailAddressListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                openUrl(new URL("mailto:" + calculatorAboutView.getMailAddress()));
+            }catch (Exception exception){
+                exception.printStackTrace();
+            }
+        }
+    }
+
     private class SubtractionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -203,7 +268,7 @@ public class CalculatorController {
             calculatorModel.evaluateResult(userInput);
             calculatorView.setResult(calculatorModel.getResult());
             if (needToClearHistory) {
-                calculatorView.setHistoryText("");
+                calculatorView.setHistoryText(" ");
             }
             needToClearResult = true;
             needToClearHistory = true;

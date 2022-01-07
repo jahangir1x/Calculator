@@ -1,8 +1,23 @@
 package io.github.x00jahangir;
 
+import static java.lang.Math.floor;
+
 public class CalculatorModel {
-    private double result = 0;
+    private double result = 0.0;
     private OperationType operationType = OperationType.NONE;
+
+    public String beautifyResult(double number) {
+        if (!Double.isFinite(number)){
+            return "Math Error";
+        }
+        else if (Double.isNaN(number)){
+            return "Math Error";
+        }
+        else if (number == floor(number)) {
+            return String.valueOf((int) number);
+        }
+        return String.valueOf(number);
+    }
 
     public void setOperationType(OperationType operationType){
         this.operationType = operationType;
