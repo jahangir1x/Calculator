@@ -23,6 +23,6 @@ Open this project in [IntelliJ IDEA](https://www.jetbrains.com/idea/) and build 
 <br></br>
 
 ## - 💬 Get in touch...
-[<img src='/repo_res/github_blue.svg' alt='github' height='40' style="vertical-align:top; margin:8px" align="center" >](https://github.com/x00jahangir) 
+[<img src='/repo_res/github_blue.svg' alt='github' height='40' style="vertical-align:top; margin:8px" align="center" >](https://github.com/jahangir1x) 
 [<img src='/repo_res/gmail_blue.svg' alt='gmail' height='40' style="vertical-align:top; margin:8px" align="center" >](mailto:x00jahangir@gmail.com) 
 [<img src='/repo_res/facebook_blue.svg' alt='facebook' height='40' style="vertical-align:top; margin:8px" align="center" >](https://fb.me/rocky.0x00)
